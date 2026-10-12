@@ -1,0 +1,92 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Perfil de usuario con consentimiento de Ley 21.719 y rol CCHIA",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "nombre": { "type": "string" },
+        "rol": { "type": "string", "enum": ["socio", "admin"] },
+        "aceptoPrivacidad": {
+          "type": "object",
+          "properties": {
+            "fecha": { "type": "string" },
+            "version": { "type": "string" }
+          }
+        },
+        "aceptoConfidencialidad": {
+          "type": "object",
+          "properties": {
+            "fecha": { "type": "string" },
+            "version": { "type": "string" }
+          }
+        }
+      },
+      "required": ["email", "rol"]
+    },
+    "Card": {
+      "title": "Card",
+      "description": "Ficha o tarjeta del socio para el directorio CCHIA",
+      "type": "object",
+      "properties": {
+        "ownerUid": { "type": "string" },
+        "slug": { "type": "string", "maxLength": 100 },
+        "tipo": { "type": "string", "enum": ["Empresa", "Institución", "Profesional"] },
+        "nombre": { "type": "string", "maxLength": 120 },
+        "titulo": { "type": "string", "maxLength": 80 },
+        "categoria": {
+          "type": "string",
+          "enum": [
+            "IA generativa",
+            "Analítica y datos",
+            "Visión computacional",
+            "Automatización",
+            "Gobernanza y ética",
+            "Formación",
+            "Consultoría",
+            "Infraestructura y hardware",
+            "Otra"
+          ]
+        },
+        "descripcion": { "type": "string", "maxLength": 300 },
+        "logoUrl": { "type": "string" },
+        "contactoNombre": { "type": "string", "maxLength": 120 },
+        "email": { "type": "string" },
+        "telefono": { "type": "string" },
+        "mostrarTelefono": { "type": "boolean" },
+        "web": { "type": "string" },
+        "linkedin": { "type": "string" },
+        "instagram": { "type": "string" },
+        "otroEnlace": { "type": "string" },
+        "estado": { "type": "string", "enum": ["Borrador", "En revisión", "Publicada", "Oculta"] },
+        "revisarCambios": { "type": "boolean" },
+        "motivoOculto": { "type": "string" },
+        "creadoEn": { "type": "string" },
+        "actualizadoEn": { "type": "string" }
+      },
+      "required": [
+        "ownerUid",
+        "slug",
+        "tipo",
+        "nombre",
+        "titulo",
+        "categoria",
+        "descripcion",
+        "contactoNombre",
+        "email",
+        "estado"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{uid}": {
+      "schema": "User",
+      "description": "Colección de usuarios y consentimientos legales"
+    },
+    "/cards/{cardId}": {
+      "schema": "Card",
+      "description": "Colección de tarjetas de socios del directorio"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Directorio de Socios CCHIA",
+  "description": "Directorio oficial de socios de la Cámara Chilena de Inteligencia Artificial A.G. (CCHIA). Conoce a las empresas, instituciones y profesionales del ecosistema de IA en Chile.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
